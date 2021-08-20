@@ -1,0 +1,63 @@
+.twitter-gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.twitter-gallery__item {
+    color: inherit;
+    max-width: 184px;
+    min-height: 214px;
+    max-height: 214px;
+    margin: 8px 6px;
+}
+
+.twitter-gallery__item:last-of-type {
+    margin-right: auto;
+}
+
+.twitter-gallery__item__link {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    min-height: 213px;
+}
+
+.twitter-gallery__item__image__container {
+    width: 184px;
+    max-height: 184px;
+    border: 1px solid rgba(232, 232, 232, 0.1);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.twitter-gallery__item__image {
+    display: block;
+    max-width: 184px;
+    max-height: 184px;
+    width: auto;
+    height: auto;
+}
+
+.twitter-gallery__item__title {
+    color: inherit;
+    font-weight: bold;
+    margin: 2px auto auto auto;
+    font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+}
+
+.twitter-gallery__header {
+    display: inline;
+}

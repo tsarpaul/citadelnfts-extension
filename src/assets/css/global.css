@@ -1,0 +1,35 @@
+/* nft button wrapper */
+#open-nft-button:hover .css-901oao.r-9ilb82.r-6koalj.r-eqz5dr.r-1qd0xha.r-a023e6.r-b88u0q.r-1pi2tsx.r-rjixqe.r-bcqeeo.r-1l7z4oj.r-95jzfe.r-bnwqim.r-qvutc0,
+#open-nft-button:hover .css-901oao.r-13gxpu9.r-6koalj.r-eqz5dr.r-1qd0xha.r-a023e6.r-b88u0q.r-1pi2tsx.r-rjixqe.r-bcqeeo.r-1l7z4oj.r-95jzfe.r-bnwqim.r-qvutc0 {
+}
+
+#open-nft-button:hover .css-1dbjc4n.r-1kihuf0.r-urgr8i.r-sdzlij.r-1p0dtai.r-xoduu5.r-hdaws3.r-s8bhmr.r-u8s1d.r-13qz1uu {
+}
+
+#open-nft-button * {
+  color: inherit;
+}
+
+#open-nft-button:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+}
+
+.total-value-1 {
+  color: darkslategray;
+}
+
+.total-value-2 {
+  color: darkgreen;
+}
+
+.total-value-3 {
+  color: goldenrod;
+}
+
+.total-value-4 {
+  color: blueviolet;
+}
+
+.total-value-5 {
+  color: deeppink;
+}
