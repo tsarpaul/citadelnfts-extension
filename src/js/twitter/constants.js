@@ -46,6 +46,8 @@ export const INACTIVE_TAB_CONTAINER_CLASSES = `r-9ilb82 ${TAB_CONTAINER_CLASSES}
 export const ACTIVE_TAB_BOTTOM_LINE_CLASSES = 'css-1dbjc4n r-1kihuf0 r-urgr8i r-sdzlij r-1p0dtai r-xoduu5 r-hdaws3 r-s8bhmr r-u8s1d r-13qz1uu';
 export const INACTIVE_TAB_BOTTOM_LINE_CLASSES = 'css-1dbjc4n r-xoduu5';
 
+export const TWITTER_FONT_CLASS = 'r-37j5jr';
+
 export const NFT_BUTTON_INNER_TEXT = 'NFTs';
 export const NFT_BUTTON_ID = 'open-nft-button';
 export const NFT_GALLERY_ID = 'nft-gallery';

@@ -1,3 +1,5 @@
+import {DEV_LOG} from '../../env.app.constants'
+
 // These are registered users
 export class TwitterUser {
   constructor(address, username, total_value, nfts, rank){
@@ -81,4 +83,4 @@ export function getClassByRank(rank){
 }
 
 export var UserData = new UserMapHelper({});
-export var UserMetadata = new UserMetadataHelper([]);
+export var UserMetadata = new UserMetadataHelper({});

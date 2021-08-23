@@ -1,11 +1,11 @@
 import {rollbackUsernameMarks, setTwitterMarkTick} from './mark-usernames';
 import {setTwitterUserActionsWatcherTick, watchUserActionsCleanup} from './watch-user-actions';
-import {galleryCleanup, setNftGalleryWatcher} from './gallery';
+import {galleryCleanup, setProfilePageWatcher} from './gallery';
 
 export function twitterInit() {
   setTwitterMarkTick();
   setTwitterUserActionsWatcherTick();
-  setNftGalleryWatcher();
+  setProfilePageWatcher();
 }
 
 export function twitterDestroy() {

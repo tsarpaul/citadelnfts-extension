@@ -1,6 +1,6 @@
 {
-  "name": "NFTCafe",
-  "version": "0.0.1",
+  "name": "CitadelNFTs",
+  "version": "0.0.2",
   "description": "A boilerplate to chrome extension with webpack",
   "scripts": {
     "build": "node utils/build.js",

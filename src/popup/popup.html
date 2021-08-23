@@ -3,10 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
-  <p style="text-align: center; font-family: 'Times New Roman'">Welcome to the Citadel</p>
-  <img src="../assets/img/128x128.png">
+<body style="width: 150px;">
+  <div style="text-align: center; margin-top: 10px;">
+    <div class="form-check form-switch" style="margin-left: 30px;">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+      <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-right: 100px">On/Off</label>
+    </div>
+    <img src="../assets/img/128x128.png" style="margin-top:5px">
+    <hr style="margin: 0; margin-top: 10px">
+    <span class="label label-default" style="font-size:13px; ">Welcome to the Citadel</span>
+    <button id="login" hidden=true type="button" class="btn btn-success">Login</button>
+    <button id="logout" hidden=true type="button" class="btn btn-danger">Logout</button>
+  </div>
+  <div style="margin-top: 10px;"></div>
+  
   <script src="popup.bundle.js"></script>
 </body>
 </html>

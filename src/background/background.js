@@ -2,15 +2,25 @@ import backgroundMessageRouter from "./backgroundMessageRouter";
 import {twitterWatcher} from "./twitterHooks";
 import * as messages from '../messages';
 import {UserMetadata, UserData} from '../js/twitter/users';
-import { getAwardsConfig, getUserMetadata } from "../js/api";
+import { FetchAwardsConfig, getUserMetadata } from "../js/api";
 import { AwardsConfig } from "../js/awards";
 
 async function UpdateUserMetadata(){
-  UserMetadata.list = await getUserMetadata();
+  try{
+    UserMetadata.list = await getUserMetadata();
+  } catch(ex) {
+    console.log("Exception: ", ex);
+    UserMetadata.list = {};
+  }
 }
 
 async function InitAwards(){
-  AwardsConfig.map = await getAwardsConfig();
+  try{
+    AwardsConfig.map = await FetchAwardsConfig();
+  } catch(ex) {
+    console.log("Exception: ", ex);
+    AwardsConfig.map = {};
+  }
 }
 
 // must try to register for older verions - https://stackoverflow.com/questions/66114920/service-worker-registration-failed-chrome-extension
@@ -24,7 +34,6 @@ try {
   // sync the UserMap with all tabs
   setInterval(() => {
     chrome.tabs.query({active: true}, (tabs) => {
-        console.log('Syncing user data');
         tabs.forEach(tab => {
           chrome.tabs.sendMessage(tab.id, {
               ...messages.userMapSync,

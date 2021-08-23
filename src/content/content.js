@@ -9,8 +9,6 @@ import {contentMessageRouter} from "./contentMessageRouter";
 var twitter_main = require("../js/twitter/index.js")
 
 async function init(){
-    let loggedIn = await backendIsLoggedIn();
-
     // Get config from background
     chrome.runtime.sendMessage({
         ...messages.awardsConfigRequest
@@ -19,6 +17,9 @@ async function init(){
     });
 
     // Register message listener
+    // Consider requiring login in the future
+    //let loggedIn = await backendIsLoggedIn();
+    let loggedIn = true;
     if(loggedIn) {
         console.log("[+] Citadel user is logged in!");
         chrome.runtime.onMessage.addListener(contentMessageRouter);

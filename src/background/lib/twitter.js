@@ -24,7 +24,7 @@ var Twitter = {
     chrome.storage.local.remove(['oauth_token', 'oauth_token_secret']);
     Twitter.oauth_token = false;
     Twitter.oauth_token_secret = false;
-    chrome.browserAction.setBadgeText({text: ''});
+    //chrome.browserAction.setBadgeText({text: ''});
   },
   isLoggedIn: function(cb) {
     chrome.storage.local.get(['oauth_token', 'oauth_token_secret'], cb);
@@ -33,6 +33,9 @@ var Twitter = {
     Twitter.oauth_token = tokens.oauth_token;
     Twitter.oauth_token_secret = tokens.oauth_token_secret;
     chrome.storage.local.set({ 'oauth_token': tokens.oauth_token, 'oauth_token_secret': tokens.oauth_token_secret }, cb);
+  },
+  getOAuthTokens: function(){
+    return [Twitter.oauth_token, Twitter.oauth_token_secret];
   },
   api: function(path /* params obj, callback fn */) {
     var args = Array.prototype.slice.call(arguments, 1),
@@ -56,7 +59,9 @@ var Twitter = {
     }
 
     /* Add an oauth token if it is an api request */
-    Twitter.oauth_token && (params.oauth_token = Twitter.oauth_token);
+    if(!params.oauth_token){
+      Twitter.oauth_token && (params.oauth_token = Twitter.oauth_token);
+    }
 
     /* Add a 1.1 and .json if its not an authentication request */
     (!path.match(/oauth/)) && (path = '1.1/' + path + '.json');
@@ -83,11 +88,15 @@ var Twitter = {
 
     fetch(API_URL + path, {method: method, headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: p.join('&')}).then((res) => { 
   if(!res.ok && res) {
+    let clone = res.clone();
     res.json().then((data) => {
       if(data['errors'][0]['code'] == 89){
         Twitter.authenticate();
       }
-    }).catch((err)=>{console.log("JSON decode error")});
+    }).catch((err)=>{
+      console.log("JSON decode error");
+      console.log(clone.text().then(res=>console.log(res)));
+    });
     //res.responseText && res.responseText.match(/89/)
   }
   else { fn(res); }

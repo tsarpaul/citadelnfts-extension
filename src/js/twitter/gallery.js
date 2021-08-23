@@ -15,10 +15,11 @@ import {
   getUsernameFromTwitterUrl,
   getUtilityTextColor
 } from '../utils/twitter';
-import {UserData} from './users';
+import {UserData, UserMetadata} from './users';
 import * as messages from '../../messages';
+import { ERRLOG } from '../utils/log';
 
-let GALLERY_WATCHER_INTERVAL;
+let PROFILE_WATCHER_INTERVAL;
 
 function getNftGallery(){
   return document.getElementById(NFT_GALLERY_ID);
@@ -28,28 +29,45 @@ function getNftButton(){
       return document.getElementById(NFT_BUTTON_ID);
 }
 
-function setNftGalleryWatcher() {
-  setTimeout(() => {
-    GALLERY_WATCHER_INTERVAL = GALLERY_WATCHER_INTERVAL || setInterval(() => {
-      const nftGalleryContainer = getNftGallery();
-      const nftGalleryButton = getNftButton();
-      const twitterName = getUsernameFromTwitterUrl(location.href);
-      // TODO: User doesnt exist bug
-      const userExists = UserData.userExists(twitterName);
+function _profilePageWatcher() {
+  const nftGalleryContainer = getNftGallery();
+  const nftGalleryButton = getNftButton();
+  const twitterName = getUsernameFromTwitterUrl(location.href);
+  // TODO: User doesnt exist bug
+  const userExists = UserMetadata.userExists(twitterName);
+  const userDataExists = UserData.userExists(twitterName);
+  if(userExists && !userDataExists) {
+    console.log('User exists but no data available yet');
+  }
 
-      if((!nftGalleryContainer || !nftGalleryButton) && userExists) {
-        chrome.runtime.sendMessage({
-          ...messages.galleryRequest,
-          twitterName
-        }, initNftGallery);
-      }
-    }, 250);
+  if((!nftGalleryContainer || !nftGalleryButton) && userDataExists) {
+    // Init NFT Gallery
+    chrome.runtime.sendMessage({
+      ...messages.galleryRequest,
+      twitterName
+    }, initNftGallery);
+  }
+}
+
+
+function profilePageWatcher() {
+  try{
+    _profilePageWatcher()
+  } catch (ex){
+    ERRLOG(ex);
+  }
+}
+
+function setProfilePageWatcher() {
+  // Infer from the URL the website's state
+  setTimeout(() => {
+    PROFILE_WATCHER_INTERVAL = PROFILE_WATCHER_INTERVAL || setInterval(profilePageWatcher), 250;
   }, 2500);
 }
 
 function resetGalleryWatcherInterval() {
-  clearInterval(GALLERY_WATCHER_INTERVAL);
-  GALLERY_WATCHER_INTERVAL = undefined;
+  clearInterval(PROFILE_WATCHER_INTERVAL);
+  PROFILE_WATCHER_INTERVAL = undefined;
 }
 
 function initNftGallery({twitterName, galleryMarkup}) {
@@ -174,6 +192,6 @@ function galleryCleanup() {
 }
 
 export {
-  setNftGalleryWatcher,
+  setProfilePageWatcher,
   galleryCleanup,
 };

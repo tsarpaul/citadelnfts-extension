@@ -22,7 +22,7 @@ function getGalleryHeaderMarkup(user) {
   let markup = `
   <div id="total-value" style='margin-top: 8px;'> \
     <div style="text-align: center; font-family: 'Times New Roman';">
-      <span>NFT Total Value: ${tv}</span>${getEtherImg()}
+      <span>NFT Total Purchases: ${tv}</span>${getEtherImg()}
       - <span class="${rankClass}">${rankName} (${rankDetails}${getEtherImg()})</span>
     </div> 
   </div>`;

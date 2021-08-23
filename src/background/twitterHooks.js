@@ -20,9 +20,14 @@ async function downloadUserInfo(username){
 }
 
 export function twitterWatcher(tabId, changeInfo, tab) {
-  if(changeInfo.status === 'complete' && tab.url.startsWith('https://twitter')) {
-    const currentProfileUsername = getUsernameFromTwitterUrl(tab.url);
-    // Update the map with the gallery
-    let exists = downloadUserInfo(currentProfileUsername);
+  try{
+    if(tab.url.startsWith('https://twitter')) {
+      const currentProfileUsername = getUsernameFromTwitterUrl(tab.url);
+      // Update the map with the gallery
+      let exists = downloadUserInfo(currentProfileUsername);
+    }
+  }
+  catch(ex) {
+    console.log("Caught exception: " + ex);
   }
 }

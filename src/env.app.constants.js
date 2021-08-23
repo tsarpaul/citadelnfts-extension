@@ -4,7 +4,8 @@ var env = require('../utils/env');
 var api_url = 'https://api.citadelnfts.com';
 
 // dev config
-if (env.NODE_ENV == 'development') {
+export const IS_DEV = env.NODE_ENV == 'development';
+if (IS_DEV) {
   api_url = 'http://localhost:80';
 }
 
