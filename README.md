@@ -1,5 +1,7 @@
 # CitadelNFTs extension
-## Instructions:
+Visit us at citadelnfts.com
+
+## Build Instructions:
 1. `npm install`
 2. Build the extension: `npx webpack --mode=production`
 3. `cd build`
