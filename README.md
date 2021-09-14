@@ -1,5 +1,5 @@
 # CitadelNFTs extension
-Visit us at citadelnfts.com
+Visit us at https://citadelnfts.com
 
 ## Build Instructions:
 1. `npm install`
